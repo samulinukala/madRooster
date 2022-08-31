@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        handleFire();
+             handleFire();
         //playerMovement.contAHor = Input.GetAxis("AimHorizontalController" + playerMovement.playerNum);
         //playerMovement.contAVer = Input.GetAxis("AimVerticalController" + playerMovement.playerNum);
 
@@ -52,7 +52,8 @@ public class Gun : MonoBehaviour
             playerMovement.angle = Mathf.Atan2(-playerMovement.direction.y, -playerMovement.direction.x);
             transform.rotation = Quaternion.EulerAngles(0, 0, playerMovement.angle);
 
-        }
-
     }
+
 }
+
+

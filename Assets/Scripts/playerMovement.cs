@@ -88,7 +88,7 @@ public class playerMovement : MonoBehaviour
         }
         
         Vector2 movement = new Vector2( direction.x*moveSpeed*Time.deltaTime ,  direction.y *moveSpeed * Time.deltaTime);
-        Debug.Log(movement);
+  
         transform.Translate(movement);
         
 
