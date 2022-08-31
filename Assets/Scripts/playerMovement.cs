@@ -10,7 +10,8 @@ public class playerMovement : MonoBehaviour
     public float health=100;
     public bool inTheLevel=false;
     public Vector2 newPos = new Vector2();
-    public bool canFire;
+    public Vector2 direction = Vector2.zero;
+    public float angle;
 
     public int score=0;
    
@@ -66,7 +67,7 @@ public class playerMovement : MonoBehaviour
 
     }
     public void MovePlayer()
-    { 
+    {
         // yksikkö vektori ottaa suunnan wasdista tällä hetkellä
         Vector2 direction = Vector2.zero;
         if (Input.GetKey(KeyCode.A))
