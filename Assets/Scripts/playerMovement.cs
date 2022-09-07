@@ -1,36 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
     private Vector3 playerLocation;
     public float moveSpeed=13;
-
-    public float health=100;
+    public PlayerInput input;
+    public int health=4;
     public bool inTheLevel=false;
     public Vector2 newPos = new Vector2();
     public Vector2 direction = Vector2.zero;
     public float angle;
-
+    public Vector3 rotationVector;
     public int score=0;
-   
+    public Rigidbody2D Rigidbody2D;
 
   
     // Start is called before the first frame update
     void Start()
     {
+        input = GetComponent<PlayerInput>();
         playerLocation = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+      
         MovePlayer();
-        checkCol();
+        rotatePlayer();
+     
         
     }
-    public void checkCol()
+    private void rotatePlayer()
+    {
+
+        var dir = Rigidbody2D.velocity;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Rigidbody2D.MoveRotation(angle);
+
+
+    }
+    private void checkCol()
     {
         if (inTheLevel == false)
         {
@@ -66,39 +79,24 @@ public class playerMovement : MonoBehaviour
         }
 
     }
-    public void MovePlayer()
+    private void MovePlayer()
     {
-        // yksikkö vektori ottaa suunnan wasdista tällä hetkellä
+        // yksikkö vektori ottaa suunnan wasdista 
         Vector2 direction = Vector2.zero;
-        if (Input.GetKey(KeyCode.A))
-        {
-            direction.x = -1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            direction.x = 1;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            direction.y = 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            direction.y = -1;
-        }
         
+      direction = input.actions["move"].ReadValue<Vector2>();
+
         Vector2 movement = new Vector2( direction.x*moveSpeed*Time.deltaTime ,  direction.y *moveSpeed * Time.deltaTime);
   
-        transform.Translate(movement);
+       Rigidbody2D.AddForce(movement,ForceMode2D.Force);
         
 
-        // yksikkö vektori antaa suunnan joka kerrotaan movespeedillä ja delta timellä
-
-        //tämä lisätään sijaintiin
+        
     }
-    public void damagePlayerSlow(float _damage)
+   
+    public void damagePlayer()
     {
-        health=health - _damage*Time.deltaTime;
+        health = health - 1;
         
     }
     
@@ -109,12 +107,12 @@ public class playerMovement : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-            Debug.Log("colsty");
+    
             inTheLevel = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-            Debug.Log("colent");
+       
             inTheLevel = true;
     }
 

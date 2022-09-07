@@ -1,0 +1,54 @@
+{
+    "name": "player movement",
+    "maps": [
+        {
+            "name": "playerMovement",
+            "id": "e55f5d00-9c8f-425b-a59d-13356c4e8939",
+            "actions": [
+                {
+                    "name": "move",
+                    "type": "Value",
+                    "id": "cab9d4ce-a541-476c-9ff3-95ffac4c4ffd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "aim",
+                    "type": "Value",
+                    "id": "20ef8b78-ec59-495b-85b4-d7c7811a2b6e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "906fbcc9-e5ac-490a-ba35-6868bd727b5e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0a413fd-da16-40de-9085-ec5221351898",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
