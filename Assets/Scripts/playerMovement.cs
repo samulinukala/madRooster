@@ -81,7 +81,7 @@ public class playerMovement : MonoBehaviour
     }
     private void MovePlayer()
     {
-        // yksikkö vektori ottaa suunnan wasdista 
+        
         Vector2 direction = Vector2.zero;
         
       direction = input.actions["move"].ReadValue<Vector2>();
