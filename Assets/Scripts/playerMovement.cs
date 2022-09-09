@@ -113,8 +113,9 @@ public class playerMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
        
+            
             inTheLevel = true;
     }
-
+   
 
 }
