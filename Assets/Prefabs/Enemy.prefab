@@ -425,6 +425,8 @@ MonoBehaviour:
   rigidbody2D: {fileID: 0}
   playerMovement: {fileID: 0}
   maxSpeed: 400
+  trackInterval: 0
+  trackIntervalTarget: 0.4
 --- !u!61 &2899105030639967696
 BoxCollider2D:
   m_ObjectHideFlags: 0
