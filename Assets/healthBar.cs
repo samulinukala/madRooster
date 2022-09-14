@@ -13,13 +13,13 @@ public class healthBar : MonoBehaviour
     {
         maxHealth = FindObjectOfType<playerMovement>().health;
         Healthbar = GetComponent<Image>();
-        HealthSections = 1/ maxHealth;
+        HealthSections =(float) 1 / maxHealth;
         Debug.Log(HealthSections);
     }
 
     // Update is called once per frame
     void Update()
     {
-     Healthbar.transform.localScale=new Vector3( FindObjectOfType<playerMovement>().health*HealthSections, 1f, 1f);
+     Healthbar.transform.localScale=new Vector3( FindObjectOfType<playerMovement>().health*HealthSections, Healthbar.transform.localScale.y, 1f);
     }
 }

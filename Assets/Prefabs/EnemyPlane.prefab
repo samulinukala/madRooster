@@ -60,7 +60,7 @@ MonoBehaviour:
   tolereance: 100
   trackFrequency: 0.001
   trackFrequencyTimer: 0
-  maxSpeed: 200
+  maxSpeed: 100
 --- !u!114 &715696338063691822
 MonoBehaviour:
   m_ObjectHideFlags: 0

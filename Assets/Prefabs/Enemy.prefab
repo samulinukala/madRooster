@@ -425,9 +425,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 0}
   playerMovement: {fileID: 0}
-  maxSpeed: 300
+  maxSpeed: 150
   trackInterval: 0
   trackIntervalTarget: 0.3
+  turnspeed: 0
 --- !u!61 &2899105030639967696
 BoxCollider2D:
   m_ObjectHideFlags: 0
