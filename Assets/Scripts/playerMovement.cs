@@ -15,8 +15,8 @@ public class playerMovement : MonoBehaviour
     public Vector3 rotationVector;
     public int score=0;
     public Rigidbody2D Rigidbody2D;
+    public float turnspeed = 5f;
 
-  
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +40,7 @@ public class playerMovement : MonoBehaviour
         var dir = Rigidbody2D.velocity;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Rigidbody2D.MoveRotation(angle);
+
 
 
     }
@@ -89,9 +90,12 @@ public class playerMovement : MonoBehaviour
         Vector2 movement = new Vector2( direction.x*moveSpeed*Time.deltaTime ,  direction.y *moveSpeed * Time.deltaTime);
   
        Rigidbody2D.AddForce(movement,ForceMode2D.Force);
-        
 
-        
+        if (Rigidbody2D.angularVelocity > turnspeed)
+        {
+            turnspeed = Rigidbody2D.angularVelocity;
+        }
+
     }
    
     public void damagePlayer()

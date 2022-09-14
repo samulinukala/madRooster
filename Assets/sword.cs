@@ -20,8 +20,10 @@ public class sword : MonoBehaviour
         if (collision.GetComponent<playerMovement>() != null)
         {
             collision.GetComponent<playerMovement>().damagePlayer();
+            GetComponentInParent<enemy>().takeDamage();
 
-        }else if (collision.GetComponent<enemy>() != null)
+        }
+        else if (collision.GetComponent<enemy>() != null)
         {
             collision.GetComponent<enemy>().takeDamage();
         }

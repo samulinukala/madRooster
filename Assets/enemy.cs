@@ -9,12 +9,13 @@ public class enemy : MonoBehaviour
     public float maxSpeed=40;
     public float trackInterval=0;
     public float trackIntervalTarget=0.75f;
-    
+    public float turnspeed=5f;
     // Start is called before the first frame update
     void Start()
     {
         playerMovement=FindObjectOfType<playerMovement>();
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+        
     }
     public void takeDamage()
     {
@@ -26,7 +27,7 @@ public class enemy : MonoBehaviour
         rotatePlayer();
         trackPlayer();
         limitSpeed();
-        Debug.Log(rigidbody2D.velocity.magnitude);
+     
     }
     void rotatePlayer()
     {
@@ -42,18 +43,17 @@ public class enemy : MonoBehaviour
          
           rigidbody2D.velocity= rigidbody2D.velocity.normalized*maxSpeed;
         }
+        if (rigidbody2D.angularVelocity > turnspeed)
+        {
+            turnspeed = rigidbody2D.angularVelocity;
+        }
     }
+   
     void trackPlayer()
     {
-        if (trackIntervalTarget < trackInterval)
-        {
-            trackInterval = 0;
-            rigidbody2D.AddForce(new Vector2(playerMovement.gameObject.transform.position.x - transform.position.x, playerMovement.gameObject.transform.position.y - transform.position.y),ForceMode2D.Impulse);
-        }
-        else if(trackIntervalTarget > trackInterval)
-        {
-            trackInterval += 1 * Time.deltaTime;
-        }
+        
+            rigidbody2D.AddForce(new Vector2(playerMovement.gameObject.transform.position.x - transform.position.x, playerMovement.gameObject.transform.position.y - transform.position.y),ForceMode2D.Force);
+       
        
     }
  

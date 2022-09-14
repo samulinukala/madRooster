@@ -17,7 +17,7 @@ public class spawnScript : MonoBehaviour
         if (timer > timerTarget)
         {
             timer=0;
-            Instantiate(spawnedEnemy);
+            Instantiate(spawnedEnemy,transform.position,transform.rotation);
         }
     }
 }
