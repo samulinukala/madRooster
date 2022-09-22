@@ -16,6 +16,7 @@ public class playerMovement : MonoBehaviour
     public int score=0;
     public Rigidbody2D Rigidbody2D;
     public float turnspeed = 5f;
+    public bool IsAlive => health < 0;
 
     // Start is called before the first frame update
     void Start()
