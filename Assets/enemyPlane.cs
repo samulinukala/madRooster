@@ -47,7 +47,7 @@ public class enemyPlane : MonoBehaviour
         }
         else if (trackFrequency < trackFrequencyTimer)
         {
-            Debug.Log(new Vector2(patrolRoute[currentTargetPosInRoute].x - transform.position.x, patrolRoute[currentTargetPosInRoute].y - transform.position.y).magnitude);
+            
             trackFrequencyTimer = 0;
             if (new Vector2(patrolRoute[currentTargetPosInRoute].x - transform.position.x, patrolRoute[currentTargetPosInRoute].y - transform.position.y).magnitude < tolereance)
             {
@@ -85,6 +85,20 @@ public class enemyPlane : MonoBehaviour
             //scale vector to correct magnitude
 
             rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "warning")
+        {
+            GameObject.FindObjectOfType<missileWarningSystem>().reciveEnemyData(gameObject);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "warning")
+        {
+            GameObject.FindObjectOfType<missileWarningSystem>().removeEnemyData(gameObject);
         }
     }
 }
