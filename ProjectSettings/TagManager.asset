@@ -16,6 +16,7 @@ TagManager:
   - playerHealthBar
   - level
   - radar
+  - warning
   layers:
   - Default
   - TransparentFX
