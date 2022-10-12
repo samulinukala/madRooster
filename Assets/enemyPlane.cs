@@ -92,16 +92,18 @@ public class enemyPlane : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "warning")
+        Debug.Log(collision);
+        if (collision==FindObjectOfType<playerMovement>().circleCollider)
         {
-            GameObject.FindObjectOfType<missileWarningSystem>().reciveEnemyData(gameObject);
+            FindObjectOfType<missileWarningSystem>().reciveEnemyData(this.transform);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "warning")
+
+        if (collision == FindObjectOfType<playerMovement>().circleCollider)
         {
-            GameObject.FindObjectOfType<missileWarningSystem>().removeEnemyData(gameObject);
+            FindObjectOfType<missileWarningSystem>().removeEnemyData(this.transform);
         }
     }
 }

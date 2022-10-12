@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 715696338063691823}
   - component: {fileID: 715696338063691822}
   - component: {fileID: 715696338063691809}
-  - component: {fileID: 715696338063691808}
   - component: {fileID: -5286332800280411249}
   - component: {fileID: 7726959878078711872}
+  - component: {fileID: 5561310067556102613}
   m_Layer: 0
   m_Name: EnemyPlane
   m_TagString: radar
@@ -98,32 +98,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &715696338063691808
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715696338063691811}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.11347705, y: 0.002364099}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9905435, y: 0.9007076}
-  m_EdgeRadius: 0
 --- !u!120 &-5286332800280411249
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -258,6 +232,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.27, y: 3.25}
   m_EdgeRadius: 0
+--- !u!58 &5561310067556102613
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715696338063691811}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 50
 --- !u!1 &715696338108683619
 GameObject:
   m_ObjectHideFlags: 0

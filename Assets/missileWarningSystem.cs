@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class missileWarningSystem : MonoBehaviour
 {
-    private Dictionary<GameObject, LineRenderer> missileLines = new();
+    public lineHolder lineHolder;
    
     
     
@@ -12,53 +12,33 @@ public class missileWarningSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+      lineHolder=FindObjectOfType<lineHolder>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        nullCheckTheLines();
-        updateLinesToTargets();
-    }public void nullCheckTheLines()
-    {
-        foreach (var line in missileLines)
-        {
-            if (line.Key == null)
-            {
-                missileLines.Remove(line.Key);
-            }
-        }
-    }
-    public void updateLinesToTargets()
-    {
-        foreach(var line in missileLines)
-        {
-            Debug.Log("update line");
-            var tmp = new List<Vector3>();
-            tmp.Add(transform.position);
-            tmp.Add(line.Key.transform.position);
-            line.Value.SetPositions(tmp.ToArray());
-            line.Value.sortingOrder = 9000;
 
-        }
+        lineHolder.updateLines();
     }
+    
+  
 
-    public void reciveEnemyData(GameObject collision) 
+    public void reciveEnemyData(Transform transform) 
     {
-        Debug.Log("enemy");
         
-            Debug.Log("enemy");
-            missileLines.Add(collision.gameObject, collision.gameObject.GetComponent<LineRenderer>());
-            collision.GetComponent<LineRenderer>().enabled = true;
+        lineHolder.addLine(transform);
+        
+           
+    
         
     }
-    public void removeEnemyData(GameObject collision)
+    public void removeEnemyData(Transform transform)
     {
-       
-            Debug.Log("enemyLeft");
-            missileLines[collision.gameObject].enabled = false;
-            missileLines.Remove(collision.gameObject);
-        
+
+        Debug.Log("enemy gone");
+        lineHolder.removeLine(transform);
+
     }
+  
 }
