@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059b834f956780348b5eda12c684b55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRendererGO: {fileID: 0}
   lineRenderer: {fileID: 7873584551676312977}
   EnemyTransform: {fileID: 0}
   playerTrfrm: {fileID: 0}
@@ -89,7 +88,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3337
+  m_SortingOrder: 1321
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}

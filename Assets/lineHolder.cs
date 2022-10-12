@@ -10,17 +10,18 @@ public class lineHolder : MonoBehaviour
     public void addLine(Transform _enemyTransform)
     {
         Debug.Log("new line");
-        lineData tmp=new();
-        tmp.addlineData(Instantiate(linePrfab), _enemyTransform);
+        GameObject tmp2= Instantiate(linePrfab);
+        lineData tmp=tmp2.GetComponent<lineData>();
+        tmp.addlineData(tmp2, _enemyTransform);
         lines.Add(tmp);
     }
     public void removeLine(Transform _enemy)
     {
-        lines.ForEach(e =>
+        foreach (lineData line in lines)
             {
                
-                if (e.EnemyTransform == _enemy) { Destroy(e); lines.Remove(e); }
-            });
+                if (line.EnemyTransform == _enemy) { Destroy(line); lines.Remove(line); break; }
+            }
     }
     public void updateLines()
     {

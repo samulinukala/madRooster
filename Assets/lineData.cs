@@ -19,9 +19,10 @@ public class lineData :MonoBehaviour
     public void updateLine()
     {
         nullCheck();
-        List<Vector3> tmp=new();
+        List<Vector3> tmp = new List<Vector3>();
         tmp.Add(playerTrfrm.position);
         tmp.Add(EnemyTransform.position);
+        Debug.Log(tmp);
         lineRenderer.SetPositions(tmp.ToArray());
 
     }
@@ -30,7 +31,8 @@ public class lineData :MonoBehaviour
        
         if(EnemyTransform == null)
         {
-            Destroy(gameObject);
+            
+           gameObject.SetActive(false);
         }
        
         
