@@ -61,7 +61,7 @@ public class enemy : MonoBehaviour
         Debug.Log(collision);
         if (collision == FindObjectOfType<playerMovement>().circleCollider)
         {
-            GameObject.FindObjectOfType<missileWarningSystem>().reciveEnemyData(transform);
+            FindObjectOfType<missileWarningSystem>().reciveEnemyData(this.transform);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -69,7 +69,7 @@ public class enemy : MonoBehaviour
 
         if (collision == FindObjectOfType<playerMovement>().circleCollider)
         {
-            GameObject.FindObjectOfType<missileWarningSystem>().removeEnemyData(transform);
+            FindObjectOfType<missileWarningSystem>().removeEnemyData(this.transform);
         }
     }
 

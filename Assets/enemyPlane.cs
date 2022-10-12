@@ -32,7 +32,7 @@ public class enemyPlane : MonoBehaviour
         limitSpeed();
         flyingAndTrack();
       
-        lineRenderer.transform.position = gameObject.transform.position;
+      
     }
     void flyingAndTrack()
     {

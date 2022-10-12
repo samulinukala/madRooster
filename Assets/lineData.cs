@@ -8,7 +8,10 @@ public class lineData :MonoBehaviour
     public LineRenderer lineRenderer;
     public Transform EnemyTransform;
     public Transform playerTrfrm;
-    
+    public void Update()
+    {
+        nullCheck();
+    }
     public void addlineData(GameObject _LRGO,Transform _enemyTrfrm)
     {
         
@@ -18,7 +21,7 @@ public class lineData :MonoBehaviour
     }
     public void updateLine()
     {
-        nullCheck();
+       
         List<Vector3> tmp = new List<Vector3>();
         tmp.Add(playerTrfrm.position);
         tmp.Add(EnemyTransform.position);
@@ -31,8 +34,10 @@ public class lineData :MonoBehaviour
        
         if(EnemyTransform == null)
         {
+            lineRenderer.positionCount=0;
             
-           gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
        
         

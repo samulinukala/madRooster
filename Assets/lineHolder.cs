@@ -20,12 +20,27 @@ public class lineHolder : MonoBehaviour
         foreach (lineData line in lines)
             {
                
-                if (line.EnemyTransform == _enemy) { Destroy(line); lines.Remove(line); break; }
+                if (line.EnemyTransform == _enemy) {
+                line.lineRenderer.positionCount = 0;
+
+                line.gameObject.SetActive(false);
+                Destroy(line.gameObject); Destroy(line); lines.Remove(line); break; }
             }
     }
     public void updateLines()
     {
-        lines.ForEach(e => e.updateLine());
+        lines.ForEach(e =>
+        {
+            if (e != null)
+            {
+                e.updateLine();
+
+            }
+            else
+            {
+                lines.Remove(e);
+            }
+        });
     }
     
 
