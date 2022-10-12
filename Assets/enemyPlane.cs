@@ -15,6 +15,7 @@ public class enemyPlane : MonoBehaviour
     public float trackFrequency=0.2f;
     public float trackFrequencyTimer=0;
     public float maxSpeed = 200;
+    LineRenderer lineRenderer => GetComponent<LineRenderer>();
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,8 @@ public class enemyPlane : MonoBehaviour
         rotatePlane();
         limitSpeed();
         flyingAndTrack();
+      
+        lineRenderer.transform.position = gameObject.transform.position;
     }
     void flyingAndTrack()
     {
@@ -89,16 +92,18 @@ public class enemyPlane : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "warning")
+        Debug.Log(collision);
+        if (collision==FindObjectOfType<playerMovement>().circleCollider)
         {
-            GameObject.FindObjectOfType<missileWarningSystem>().reciveEnemyData(gameObject);
+            FindObjectOfType<missileWarningSystem>().reciveEnemyData(this.transform);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "warning")
+
+        if (collision == FindObjectOfType<playerMovement>().circleCollider)
         {
-            GameObject.FindObjectOfType<missileWarningSystem>().removeEnemyData(gameObject);
+            FindObjectOfType<missileWarningSystem>().removeEnemyData(this.transform);
         }
     }
 }

@@ -58,16 +58,18 @@ public class enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "warning")
+        Debug.Log(collision);
+        if (collision == FindObjectOfType<playerMovement>().circleCollider)
         {
-            GameObject.FindObjectOfType<missileWarningSystem>().reciveEnemyData(gameObject);
+            GameObject.FindObjectOfType<missileWarningSystem>().reciveEnemyData(transform);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "warning")
+
+        if (collision == FindObjectOfType<playerMovement>().circleCollider)
         {
-            GameObject.FindObjectOfType<missileWarningSystem>().removeEnemyData(gameObject);
+            GameObject.FindObjectOfType<missileWarningSystem>().removeEnemyData(transform);
         }
     }
 
