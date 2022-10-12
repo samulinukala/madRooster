@@ -13,7 +13,10 @@ public class gameManager : MonoBehaviour
     public playerMovement playerMovement;
     public GameObject GameOverCanvas;
     // Start is called before the first frame update
-
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
     private void Awake()
     {
         playerMovement=FindObjectOfType<playerMovement>();
