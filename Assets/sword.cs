@@ -23,7 +23,7 @@ public class sword : MonoBehaviour
             GetComponentInParent<enemy>().takeDamage();
 
         }
-        else if (collision.GetComponent<enemy>() != null)
+        else if (collision.GetComponent<enemy>() ==true||collision.GetComponent<enemyPlane>())
         {
             collision.GetComponent<enemy>().takeDamage();
         }
