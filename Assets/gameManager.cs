@@ -24,6 +24,10 @@ public class gameManager : MonoBehaviour
         {
             survivalTimer += 1 * Time.deltaTime;
             scoreText.text =((int) survivalTimer).ToString();
+
+
+
+            Time.timeScale = 0;
         }
     }
 }
