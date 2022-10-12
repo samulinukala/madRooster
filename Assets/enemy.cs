@@ -10,6 +10,7 @@ public class enemy : MonoBehaviour
     public float trackInterval=0;
     public float trackIntervalTarget=0.75f;
     public float turnspeed=5f;
+    public GameObject particles;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,8 @@ public class enemy : MonoBehaviour
     }
     public void takeDamage()
     {
+
+        Instantiate(particles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     // Update is called once per frame
