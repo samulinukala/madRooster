@@ -15,6 +15,7 @@ public class enemyPlane : MonoBehaviour
     public float trackFrequency=0.2f;
     public float trackFrequencyTimer=0;
     public float maxSpeed = 200;
+    
     LineRenderer lineRenderer => GetComponent<LineRenderer>();
 
     // Start is called before the first frame update

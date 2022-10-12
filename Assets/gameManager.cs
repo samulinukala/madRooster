@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 public class gameManager : MonoBehaviour
 {
     public Button restartButton;
@@ -12,6 +13,19 @@ public class gameManager : MonoBehaviour
     public TMP_Text scoreText;
     public playerMovement playerMovement;
     public GameObject GameOverCanvas;
+    public AudioSource GameOverAudioSource;
+    public AudioSource RestartAudioSource;
+
+
+    public IEnumerator SoundTimer()
+    {
+        GameOverCanvas.SetActive(false);
+        RestartAudioSource.Play();
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(1);
+
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -32,14 +46,16 @@ public class gameManager : MonoBehaviour
         }
         else if (gameOver == true)
         {
+            GameOverAudioSource.Play();
             GameOverCanvas.SetActive(true);
-            Time.timeScale = 0;
+            FindObjectsOfType<enemyPlane>().ToList().ForEach(e => e.gameObject.SetActive(false));
+            FindObjectsOfType<enemy>().ToList().ForEach(e => e.gameObject.SetActive(false));
+            FindObjectsOfType<spawnScript>().ToList().ForEach(e => e.gameObject.SetActive(false));
         }
     }
 
     public void Restart()
     {
-        GameOverCanvas.SetActive(false);
-        SceneManager.LoadScene(1);
+        StartCoroutine(SoundTimer());
     }
 }
