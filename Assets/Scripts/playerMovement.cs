@@ -83,8 +83,7 @@ public class playerMovement : MonoBehaviour
 
     }
     private void MovePlayer()
-    {
-        Vector2 VolumeChanger;
+    {        
         Vector2 direction = Vector2.zero;
         
       direction = input.actions["move"].ReadValue<Vector2>();
