@@ -68,10 +68,10 @@ public class enemy : MonoBehaviour
         }
         if (collision.GetComponent<enemy>() != null)
         {
-            if (collision.gameObject != gameObject)
+            if (collision.gameObject != this.gameObject)
             {
-                // Destroy(collision.gameObject);
-               // Destroy(gameObject);
+                 Destroy(collision.gameObject);
+                Destroy(gameObject);
                 Debug.Log("missile should explode by prox");
             }
         }
