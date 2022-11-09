@@ -15,17 +15,20 @@ public class gameManager : MonoBehaviour
     public GameObject GameOverCanvas;
     public AudioSource GameOverAudioSource;
     public AudioSource RestartAudioSource;
-
+    public bool doOnce = false;
 
     public IEnumerator SoundTimer()
     {
         GameOverCanvas.SetActive(false);
         RestartAudioSource.Play();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         SceneManager.LoadScene(1);
-
     }
-
+    public IEnumerator GameOverTimer()
+    {        
+        GameOverAudioSource.Play();
+        yield return new WaitForSeconds(0.4f);
+    }
     // Start is called before the first frame update
     private void Start()
     {
@@ -44,13 +47,14 @@ public class gameManager : MonoBehaviour
             survivalTimer += 1 * Time.deltaTime;
             scoreText.text =((int) survivalTimer).ToString();            
         }
-        else if (gameOver == true)
-        {
-            GameOverAudioSource.Play();
+        else if (gameOver == true && doOnce == false)
+        {            
+            StartCoroutine(GameOverTimer());
             GameOverCanvas.SetActive(true);
             FindObjectsOfType<enemyPlane>().ToList().ForEach(e => e.gameObject.SetActive(false));
             FindObjectsOfType<enemy>().ToList().ForEach(e => e.gameObject.SetActive(false));
             FindObjectsOfType<spawnScript>().ToList().ForEach(e => e.gameObject.SetActive(false));
+            doOnce = true;
         }
     }
 
