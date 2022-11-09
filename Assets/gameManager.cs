@@ -48,7 +48,8 @@ public class gameManager : MonoBehaviour
         if (gameOver==false)
         {
             survivalTimer += 1 * Time.deltaTime;
-            scoreText.text =((int) survivalTimer).ToString();            
+            
+            scoreText.text = "Score: " + ((int) survivalTimer).ToString();            
         }
         else if (gameOver == true && doOnce == false)
         {            
