@@ -1,6 +1,8 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class enemy : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class enemy : MonoBehaviour
     public float trackIntervalTarget=0.75f;
     public float turnspeed=5f;
     public GameObject particles;
+    [Range(0,100)]
+    public float PowerUpDropChance;
+    public GameObject powerUp;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +27,17 @@ public class enemy : MonoBehaviour
     {
 
         Instantiate(particles, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
+    }
+    void dropPowerUp()
+    {
+        float rand=Random.Range(0,PowerUpDropChance);
+        if (PowerUpDropChance < rand)
+        {
+            var tmp=Instantiate(powerUp);
+            tmp.transform.parent = null;
+        }
     }
     // Update is called once per frame
     void Update()
