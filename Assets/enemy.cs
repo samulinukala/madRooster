@@ -61,7 +61,7 @@ public class enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
+      
         if (collision == FindObjectOfType<playerMovement>().circleCollider)
         {
             FindObjectOfType<missileWarningSystem>().reciveEnemyData(this.transform);
@@ -82,7 +82,7 @@ public class enemy : MonoBehaviour
             {
                 collision.gameObject.GetComponent<enemy>().takeDamage();
                 takeDamage();
-                Debug.Log("missile should explode by prox");
+                
             }
         }
     }

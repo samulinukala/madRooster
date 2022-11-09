@@ -17,7 +17,8 @@ public class playerMovement : MonoBehaviour
     public Rigidbody2D Rigidbody2D;
     public float turnspeed = 5f;
     public Collider2D circleCollider;
-    public bool IsAlive => health < 0;
+    public invincibilityEffect invincibilityEffect=>FindObjectOfType<invincibilityEffect>();
+    public bool IsAlive => health <= 0;
 
     // Start is called before the first frame update
     void Start()
@@ -103,7 +104,11 @@ public class playerMovement : MonoBehaviour
    
     public void damagePlayer()
     {
-        health = health - 1;
+        if (invincibilityEffect.invicible != true)
+        {
+            health = health - 1;
+            invincibilityEffect.invicible = true;
+        }
         
     }
     

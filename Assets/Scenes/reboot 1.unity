@@ -3117,6 +3117,7 @@ GameObject:
   - component: {fileID: 1765285862}
   - component: {fileID: 1765285861}
   - component: {fileID: 1765285865}
+  - component: {fileID: 1765285866}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -3265,7 +3266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   input: {fileID: 0}
-  health: 1
+  health: 3
   inTheLevel: 0
   newPos: {x: 0, y: 0}
   direction: {x: 0, y: 0}
@@ -3322,6 +3323,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.1381311, y: 3.7611203}
   m_EdgeRadius: 0
+--- !u!114 &1765285866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765285858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a98a98a22fce04694d0da79b8b0eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritesToFlicker:
+  - {fileID: 1765285860}
+  - {fileID: 962498849}
+  - {fileID: 1646546315}
+  - {fileID: 1765285860}
+  invicible: 0
+  doOnce: 0
+  timer: 0
+  timerTarget: 2
 --- !u!1 &1878808963
 GameObject:
   m_ObjectHideFlags: 0
