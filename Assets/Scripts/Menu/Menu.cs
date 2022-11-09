@@ -9,10 +9,10 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public Button StartButton;
-    
+    public AudioSource MenuMusic;
     private void Start()
     {
-        
+        MenuMusic.Play();
     }
 
     public void OnMouseUp(Button start)
@@ -20,5 +20,4 @@ public class Menu : MonoBehaviour
         Debug.Log("Button pressed");       
         SceneManager.LoadScene(1);        
     }
-
 }

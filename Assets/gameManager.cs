@@ -13,8 +13,10 @@ public class gameManager : MonoBehaviour
     public TMP_Text scoreText;
     public playerMovement playerMovement;
     public GameObject GameOverCanvas;
+
     public AudioSource GameOverAudioSource;
     public AudioSource RestartAudioSource;
+    public AudioSource GameMusic;
     public bool doOnce = false;
 
     public IEnumerator SoundTimer()
@@ -33,6 +35,7 @@ public class gameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        GameMusic.Play();
     }
     private void Awake()
     {
