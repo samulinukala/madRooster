@@ -19,13 +19,15 @@ public class playerMovement : MonoBehaviour
     public Collider2D circleCollider;
     public bool IsAlive => health < 0;
 
+    public AudioSource MovementAudio;
+
     // Start is called before the first frame update
     void Start()
     {
         circleCollider = GetComponent<Collider2D>();
         input = GetComponent<PlayerInput>();
         playerLocation = transform.position;
-        
+        MovementAudio.Play();
     }
 
     // Update is called once per frame
@@ -39,13 +41,9 @@ public class playerMovement : MonoBehaviour
     }
     private void rotatePlayer()
     {
-
         var dir = Rigidbody2D.velocity;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Rigidbody2D.MoveRotation(angle);
-
-
-
+        Rigidbody2D.MoveRotation(angle);        
     }
     private void checkCol()
     {
@@ -85,20 +83,22 @@ public class playerMovement : MonoBehaviour
     }
     private void MovePlayer()
     {
-        
+        Vector2 VolumeChanger;
         Vector2 direction = Vector2.zero;
         
       direction = input.actions["move"].ReadValue<Vector2>();
 
         Vector2 movement = new Vector2( direction.x*moveSpeed*Time.deltaTime ,  direction.y *moveSpeed * Time.deltaTime);
-  
-       Rigidbody2D.AddForce(movement,ForceMode2D.Force);
-
+        
+        MovementAudio.volume = movement.magnitude*50;
+        if(MovementAudio.volume < 0.3) MovementAudio.volume = 0.3f;
+        
+        Rigidbody2D.AddForce(movement,ForceMode2D.Force);       
+        
         if (Rigidbody2D.angularVelocity > turnspeed)
         {
             turnspeed = Rigidbody2D.angularVelocity;
         }
-
     }
    
     public void damagePlayer()

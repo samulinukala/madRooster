@@ -16,8 +16,9 @@ public class Radar : MonoBehaviour
     public float timer=0;
     public float timerTarget=6f;
     public Image button;
-   
-
+    public GameObject RadarOn;
+    public GameObject RadarOff;
+    
     // how it is supposed to work
     //get a screen shot from the radar camera that has the enemy in a layer that shows points that are on the enemy prefabs
     //put the screenshot in to the radar data image
@@ -35,12 +36,13 @@ public class Radar : MonoBehaviour
             canvas.enabled = true;
             if (timer < timerTarget)
             {
-                timer += Time.deltaTime;
-                
+                timer += Time.deltaTime;                
             }
             else
             {
-                timer = 0;
+                timer = 0;                 
+                RadarOn.SetActive(false);
+                RadarOff.SetActive(true);                    
                 RadarShown = false;
                 radarAvailable = false;
             }
@@ -48,7 +50,8 @@ public class Radar : MonoBehaviour
         else
         {
             canvas.enabled = false;
-            if (radarAvailable == false) {
+            if (radarAvailable == false) 
+            {
                 if (radarAvailableTimer < radaravalableTimerTarget)
                 {
                     radarAvailableTimer += Time.deltaTime;
@@ -56,41 +59,34 @@ public class Radar : MonoBehaviour
                 if (radarAvailableTimer > radaravalableTimerTarget)
                 {
                     radarAvailableTimer = 0;
-                    radarAvailable = true;
-                    
+                    radarAvailable = true;                    
                 }
-        } }
+            }
+        }
+
         if (RadarShown == true)
         {
             button.color = Color.yellow;
-        }else
+        }
+        else
         if (radarAvailable)
         {
             button.color = Color.cyan;
-        }else
+        }
+        else
         if (radarAvailable == false)
         {
             button.color = Color.red;
         }
-      
-       
-        
-
-        
     }
+
     public void changeRadar()
     {
         if (radarAvailable == true && RadarShown == false)
         {
             RadarShown = true;
-           
+            RadarOn.SetActive(true);
+            RadarOff.SetActive(false);
         }
-        
     }
-  
-    
-    
-
-    
-  
 }
