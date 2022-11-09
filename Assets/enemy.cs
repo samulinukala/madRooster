@@ -66,6 +66,25 @@ public class enemy : MonoBehaviour
         {
             FindObjectOfType<missileWarningSystem>().reciveEnemyData(this.transform);
         }
+       
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<enemyPlane>() != null)
+        {
+
+            takeDamage();
+
+        }
+        if (collision.gameObject.GetComponent<enemy>() != null)
+        {
+            if (collision.gameObject.GetComponent<enemy>() != this.gameObject.GetComponent<enemy>())
+            {
+                collision.gameObject.GetComponent<enemy>().takeDamage();
+                takeDamage();
+                Debug.Log("missile should explode by prox");
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

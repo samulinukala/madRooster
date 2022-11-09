@@ -25,7 +25,7 @@ public class lineData :MonoBehaviour
         List<Vector3> tmp = new List<Vector3>();
         tmp.Add(playerTrfrm.position);
         tmp.Add(EnemyTransform.position);
-        Debug.Log(tmp);
+       
         lineRenderer.SetPositions(tmp.ToArray());
 
     }

@@ -119,9 +119,13 @@ public class playerMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       
-            
-            inTheLevel = true;
+        inTheLevel = true;
+        if (collision.GetComponent<sword>() != null)
+        {
+            damagePlayer();
+            collision.GetComponentInParent<enemy>().takeDamage();
+
+        }
     }
    
 

@@ -17,13 +17,7 @@ public class sword : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<playerMovement>() != null)
-        {
-            collision.GetComponent<playerMovement>().damagePlayer();
-            GetComponentInParent<enemy>().takeDamage();
-
-        }
-        else if (collision.GetComponent<enemy>() ==true||collision.GetComponent<enemyPlane>())
+        if (collision.GetComponent<enemyPlane>()) // if (collision.GetComponent<enemy>() == true || collision.GetComponent<enemyPlane>())
         {
             collision.GetComponent<enemy>().takeDamage();
         }
