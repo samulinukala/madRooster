@@ -19,7 +19,9 @@ public class playerMovement : MonoBehaviour
     public Collider2D circleCollider;
     public invincibilityEffect invincibilityEffect=>FindObjectOfType<invincibilityEffect>();
     public bool IsAlive => health <= 0;
-
+    public bool powerUpActive=false;
+    public float powerUpTimer=0;
+    public float powerUpTimerTarget=10;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class playerMovement : MonoBehaviour
         playerLocation = transform.position;
         
     }
+   
 
     // Update is called once per frame
     void Update()
@@ -35,7 +38,18 @@ public class playerMovement : MonoBehaviour
       
         MovePlayer();
         rotatePlayer();
-     
+        if (powerUpActive == true)
+        {
+            if (powerUpTimer > powerUpTimerTarget)
+            {
+                powerUpTimer = 0;
+                powerUpActive = false;
+            }
+            else
+            {
+                powerUpTimer += 1*Time.deltaTime;
+            }
+        }
         
     }
     private void rotatePlayer()
@@ -132,6 +146,16 @@ public class playerMovement : MonoBehaviour
 
         }
     }
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (powerUpActive==true)
+        {
+            if (collision.gameObject.GetComponent<enemyPlane>() != null)
+            {
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+
 
 }
