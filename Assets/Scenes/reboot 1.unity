@@ -2865,7 +2865,7 @@ MonoBehaviour:
   score: 0
   Rigidbody2D: {fileID: 1765285864}
   turnspeed: 5
-  circleCollider: {fileID: 0}
+  circleCollider: {fileID: 984616729}
 --- !u!50 &1765285864
 Rigidbody2D:
   serializedVersion: 4
