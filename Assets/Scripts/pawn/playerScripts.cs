@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class playerMovement : MonoBehaviour
+public class playerScripts : MonoBehaviour
 {
     private Vector3 playerLocation;
     public float moveSpeed=13;

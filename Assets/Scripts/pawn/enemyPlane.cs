@@ -23,7 +23,7 @@ public class enemyPlane : MonoBehaviour
     void Start()
     {
        
-        player = FindObjectOfType<playerMovement>().gameObject;
+        player = FindObjectOfType<playerScripts>().gameObject;
        currentTargetPosInRoute = 6;
     }
 
@@ -100,7 +100,7 @@ public class enemyPlane : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision);
-        if (collision==FindObjectOfType<playerMovement>().circleCollider)
+        if (collision==FindObjectOfType<playerScripts>().circleCollider)
         {
             FindObjectOfType<missileWarningSystem>().reciveEnemyData(this.transform);
         }
@@ -108,7 +108,7 @@ public class enemyPlane : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision == FindObjectOfType<playerMovement>().circleCollider)
+        if (collision == FindObjectOfType<playerScripts>().circleCollider)
         {
             FindObjectOfType<missileWarningSystem>().removeEnemyData(this.transform);
         }

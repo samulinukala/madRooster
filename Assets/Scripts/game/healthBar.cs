@@ -11,7 +11,7 @@ public class healthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = FindObjectOfType<playerMovement>().health;
+        maxHealth = FindObjectOfType<playerScripts>().health;
         Healthbar = GetComponent<Image>();
         HealthSections =(float) 1 / maxHealth;
         Debug.Log(HealthSections);
@@ -20,6 +20,6 @@ public class healthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     Healthbar.transform.localScale=new Vector3( FindObjectOfType<playerMovement>().health*HealthSections, Healthbar.transform.localScale.y, 1f);
+     Healthbar.transform.localScale=new Vector3( FindObjectOfType<playerScripts>().health*HealthSections, Healthbar.transform.localScale.y, 1f);
     }
 }

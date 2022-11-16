@@ -24,7 +24,7 @@ public partial class @Playermovement : IInputActionCollection2, IDisposable
     ""name"": ""player movement"",
     ""maps"": [
         {
-            ""name"": ""playerMovement"",
+            ""name"": ""playerScripts"",
             ""id"": ""e55f5d00-9c8f-425b-a59d-13356c4e8939"",
             ""actions"": [
                 {
@@ -74,8 +74,8 @@ public partial class @Playermovement : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // playerMovement
-        m_playerMovement = asset.FindActionMap("playerMovement", throwIfNotFound: true);
+        // playerScripts
+        m_playerMovement = asset.FindActionMap("playerScripts", throwIfNotFound: true);
         m_playerMovement_move = m_playerMovement.FindAction("move", throwIfNotFound: true);
         m_playerMovement_aim = m_playerMovement.FindAction("aim", throwIfNotFound: true);
     }
@@ -134,7 +134,7 @@ public partial class @Playermovement : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // playerMovement
+    // playerScripts
     private readonly InputActionMap m_playerMovement;
     private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
     private readonly InputAction m_playerMovement_move;

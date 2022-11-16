@@ -11,7 +11,7 @@ public class gameManager : MonoBehaviour
     public float survivalTimer;
     public bool gameOver;
     public TMP_Text scoreText;
-    public playerMovement playerMovement;
+    public playerScripts playerMovement;
     public GameObject GameOverCanvas;
 
     public AudioSource GameOverAudioSource;
@@ -39,7 +39,7 @@ public class gameManager : MonoBehaviour
     }
     private void Awake()
     {
-        playerMovement=FindObjectOfType<playerMovement>();
+        playerMovement=FindObjectOfType<playerScripts>();
     }
     // Update is called once per frame
     void Update()

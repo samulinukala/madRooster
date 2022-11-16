@@ -8,7 +8,7 @@ public class powerUp : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            collision.gameObject.GetComponent<playerMovement>().powerUpActive = true;
+            collision.gameObject.GetComponent<playerScripts>().powerUpActive = true;
             Destroy(gameObject);
         }
     }

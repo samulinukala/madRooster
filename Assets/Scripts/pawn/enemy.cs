@@ -7,7 +7,7 @@ using UnityEngine.SocialPlatforms;
 public class enemy : MonoBehaviour
 {
     public Rigidbody2D rigidbody2D;
-    public playerMovement playerMovement;
+    public playerScripts playerMovement;
     public float maxSpeed=40;
     public float trackInterval=0;
     public float trackIntervalTarget=0.75f;
@@ -20,7 +20,7 @@ public class enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerMovement=FindObjectOfType<playerMovement>();
+        playerMovement=FindObjectOfType<playerScripts>();
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         
     }
@@ -79,7 +79,7 @@ public class enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
       
-        if (collision == FindObjectOfType<playerMovement>().circleCollider)
+        if (collision == FindObjectOfType<playerScripts>().circleCollider)
         {
             FindObjectOfType<missileWarningSystem>().reciveEnemyData(this.transform);
         }
@@ -106,7 +106,7 @@ public class enemy : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision == FindObjectOfType<playerMovement>().circleCollider)
+        if (collision == FindObjectOfType<playerScripts>().circleCollider)
         {
             FindObjectOfType<missileWarningSystem>().removeEnemyData(this.transform);
         }

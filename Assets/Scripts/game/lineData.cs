@@ -16,7 +16,7 @@ public class lineData :MonoBehaviour
     {
         
         EnemyTransform= _enemyTrfrm;
-        playerTrfrm = GameObject.FindObjectOfType<playerMovement>().gameObject.transform;
+        playerTrfrm = GameObject.FindObjectOfType<playerScripts>().gameObject.transform;
 
     }
     public void updateLine()
