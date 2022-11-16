@@ -262,7 +262,7 @@ MonoBehaviour:
   trackIntervalTarget: 0.3
   turnspeed: 0
   particles: {fileID: 3949917239990513821, guid: e626409e958b86c4297ffa609cd39f5b, type: 3}
-  PowerUpDropChance: 3
+  PowerUpDropChance: 100
   powerUp: {fileID: 7033714897866353637, guid: 5ae3717ca22b4424e984ccabf48895b0, type: 3}
 --- !u!61 &2899105030639967696
 BoxCollider2D:
