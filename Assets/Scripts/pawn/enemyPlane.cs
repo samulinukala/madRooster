@@ -7,14 +7,14 @@ public class enemyPlane : MonoBehaviour
 {
     public List<Vector2> patrolRoute;
     public int numberOfLocationPoints;
-   public Rigidbody2D rb;
+    public Rigidbody2D rb;
     public GameObject player;
-   public float PlotingTimerTarget = 0;
+    public float PlotingTimerTarget = 0;
     float Plotingtimer = 0;
     public int currentTargetPosInRoute;
     public float tolereance;
-    public float trackFrequency=0.2f;
-    public float trackFrequencyTimer=0;
+    public float trackFrequency = 0.2f;
+    public float trackFrequencyTimer = 0;
     public float maxSpeed = 200;
     public GameObject particles;
     LineRenderer lineRenderer => GetComponent<LineRenderer>();
@@ -22,9 +22,9 @@ public class enemyPlane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         player = FindObjectOfType<playerScripts>().gameObject;
-       currentTargetPosInRoute = 6;
+        currentTargetPosInRoute = 6;
     }
 
     // Update is called once per frame
@@ -33,8 +33,8 @@ public class enemyPlane : MonoBehaviour
         rotatePlane();
         limitSpeed();
         flyingAndTrack();
-      
-      
+
+
     }
     public void takeDamage()
     {
@@ -57,18 +57,18 @@ public class enemyPlane : MonoBehaviour
         }
         else if (trackFrequency < trackFrequencyTimer)
         {
-            
+
             trackFrequencyTimer = 0;
             if (new Vector2(patrolRoute[currentTargetPosInRoute].x - transform.position.x, patrolRoute[currentTargetPosInRoute].y - transform.position.y).magnitude < tolereance)
             {
-               
-                if (currentTargetPosInRoute > 0 )
+
+                if (currentTargetPosInRoute > 0)
                 {
                     currentTargetPosInRoute--;
                 }
-                else if(currentTargetPosInRoute==0)
+                else if (currentTargetPosInRoute == 0)
                 {
-                    currentTargetPosInRoute = patrolRoute.Count-1;
+                    currentTargetPosInRoute = patrolRoute.Count - 1;
                 }
             }
             else
@@ -100,7 +100,7 @@ public class enemyPlane : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision);
-        if (collision==FindObjectOfType<playerScripts>().circleCollider)
+        if (collision == FindObjectOfType<playerScripts>().circleCollider)
         {
             FindObjectOfType<missileWarningSystem>().reciveEnemyData(this.transform);
         }
@@ -111,6 +111,13 @@ public class enemyPlane : MonoBehaviour
         if (collision == FindObjectOfType<playerScripts>().circleCollider)
         {
             FindObjectOfType<missileWarningSystem>().removeEnemyData(this.transform);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.GetComponent<powerUp>())
+        {
+            Destroy(collision.collider.gameObject);
         }
     }
 }

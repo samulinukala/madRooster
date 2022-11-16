@@ -22,6 +22,10 @@ public class level : MonoBehaviour
     {
         currentHue = currentHue+Time.deltaTime/changeSpeed;
         levelColor= Color.HSVToRGB(currentHue, currentSaturation, currentBrightness);
+        if (currentHue > 1)
+        {
+            currentHue = 0;
+        }
         spriteRenderer.color = levelColor;
         Camera.backgroundColor = levelColor;
     }
