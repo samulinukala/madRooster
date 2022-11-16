@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class enemyPlane : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class enemyPlane : MonoBehaviour
     public float trackFrequency=0.2f;
     public float trackFrequencyTimer=0;
     public float maxSpeed = 200;
-    
+    public GameObject particles;
     LineRenderer lineRenderer => GetComponent<LineRenderer>();
 
     // Start is called before the first frame update
@@ -34,6 +35,11 @@ public class enemyPlane : MonoBehaviour
         flyingAndTrack();
       
       
+    }
+    public void takeDamage()
+    {
+        Instantiate(particles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
     void flyingAndTrack()
     {

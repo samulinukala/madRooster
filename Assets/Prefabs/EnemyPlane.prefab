@@ -61,6 +61,7 @@ MonoBehaviour:
   trackFrequency: 0.001
   trackFrequencyTimer: 0
   maxSpeed: 100
+  particles: {fileID: 3949917239990513821, guid: e626409e958b86c4297ffa609cd39f5b, type: 3}
 --- !u!50 &715696338063691809
 Rigidbody2D:
   serializedVersion: 4

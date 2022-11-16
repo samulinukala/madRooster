@@ -16,6 +16,7 @@ public class enemy : MonoBehaviour
     [Range(0,100)]
     public float PowerUpDropChance;
     public GameObject powerUp;
+    public powerUpHolder powerUpHolder=>FindObjectOfType<powerUpHolder>();
     // Start is called before the first frame update
     void Start()
     {
@@ -25,18 +26,19 @@ public class enemy : MonoBehaviour
     }
     public void takeDamage()
     {
-
+        dropPowerUp();
         Instantiate(particles, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
     void dropPowerUp()
     {
-        float rand=Random.Range(0,PowerUpDropChance);
-        if (PowerUpDropChance < rand)
+        float rand=Random.Range(0,100);
+        if (PowerUpDropChance > rand)
         {
             var tmp=Instantiate(powerUp);
-            tmp.transform.parent = null;
+            tmp.transform.parent=powerUpHolder.transform;
+            tmp.transform.position = transform.position;
         }
     }
     // Update is called once per frame

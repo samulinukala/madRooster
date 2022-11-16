@@ -118,7 +118,7 @@ public class playerMovement : MonoBehaviour
    
     public void damagePlayer()
     {
-        if (invincibilityEffect.invicible != true)
+        if (true!=invincibilityEffect.invicible&&true!=powerUpActive)
         {
             health = health - 1;
             invincibilityEffect.invicible = true;
@@ -146,6 +146,16 @@ public class playerMovement : MonoBehaviour
 
         }
     }
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (powerUpActive == true)
+        {
+            if (collision.gameObject.GetComponent<enemyPlane>() != null)
+            {
+                collision.gameObject.GetComponent<enemyPlane>().takeDamage();
+            }
+        }
+    }
+
 
 }
