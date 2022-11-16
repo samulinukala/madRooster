@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 16728601}
   - component: {fileID: 16728600}
   - component: {fileID: 16728599}
+  - component: {fileID: 16728603}
   m_Layer: 5
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -224,6 +225,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &16728603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16728598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429c639a5a31e4686906143d6895239a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidAdUnitId: Banner_Android
+  iosAdUnitId: Banner_iOS
+  iosGameId: 5022768
+  androidGameId: 5022769
+  bannerAdAnchor: 6
+  bannerSize: 0
 --- !u!1 &89779247
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +776,6 @@ MonoBehaviour:
   GameOverCanvas: {fileID: 16728598}
   GameOverAudioSource: {fileID: 1122274100}
   RestartAudioSource: {fileID: 784003201}
-  GameMusic: {fileID: 0}
   doOnce: 0
 --- !u!4 &461413053
 Transform:
@@ -2615,6 +2633,10 @@ PrefabInstance:
     - target: {fileID: 2744129501306918367, guid: e92e7ef13f9924040bbca86e6ffed0d8, type: 3}
       propertyPath: lineHolder
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2744129502607672611, guid: e92e7ef13f9924040bbca86e6ffed0d8, type: 3}
+      propertyPath: health
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2744129502607672611, guid: e92e7ef13f9924040bbca86e6ffed0d8, type: 3}
       propertyPath: PowerUpSFX
