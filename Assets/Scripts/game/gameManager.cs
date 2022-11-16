@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using Unity.Services.Mediation.Samples;
 public class gameManager : MonoBehaviour
 {
     public Button restartButton;
@@ -18,6 +19,8 @@ public class gameManager : MonoBehaviour
     public AudioSource RestartAudioSource;
     public bool doOnce = false;
 
+    public monetisationData monetisationData;
+    public InterstitialExample interstitialExample;
     public IEnumerator SoundTimer()
     {
         GameOverCanvas.SetActive(false);
@@ -51,12 +54,14 @@ public class gameManager : MonoBehaviour
             scoreText.text = "Score: " + ((int) survivalTimer).ToString();            
         }
         else if (gameOver == true && doOnce == false)
-        {            
+        {
+            monetisationData.ammountOfTimesSinceAds += 1;
             StartCoroutine(GameOverTimer());
             GameOverCanvas.SetActive(true);
             FindObjectsOfType<enemyPlane>().ToList().ForEach(e => e.gameObject.SetActive(false));
             FindObjectsOfType<enemy>().ToList().ForEach(e => e.gameObject.SetActive(false));
             FindObjectsOfType<spawnScript>().ToList().ForEach(e => e.gameObject.SetActive(false));
+            interstitialExample.ShowInterstitial();
             doOnce = true;
         }
     }

@@ -8,6 +8,7 @@ namespace Unity.Services.Mediation.Samples
     /// <summary>
     /// Sample Implementation of Unity Mediation
     /// </summary>
+    
     public class InterstitialExample : MonoBehaviour
     {
         [Header("Ad Unit Ids"), Tooltip("Android Ad Unit Ids")]
@@ -24,6 +25,9 @@ namespace Unity.Services.Mediation.Samples
         public string androidGameId;
 
         IInterstitialAd m_InterstitialAd;
+
+        public monetisationData monetisationData;
+        
 
         async void Start()
         {
@@ -66,19 +70,28 @@ namespace Unity.Services.Mediation.Samples
 
         public async void ShowInterstitial()
         {
-            if (m_InterstitialAd?.AdState == AdState.Loaded)
+            if (monetisationData.hasPurchasedContent == false && monetisationData.WhenToShowAds >= monetisationData.ammountOfTimesSinceAds)
             {
-                try
+                if (m_InterstitialAd?.AdState == AdState.Loaded)
                 {
-                    var showOptions = new InterstitialAdShowOptions { AutoReload = true };
-                    await m_InterstitialAd.ShowAsync(showOptions);
-                    Debug.Log("Interstitial Shown!");
+                    try
+                    {
+                        var showOptions = new InterstitialAdShowOptions { AutoReload = true };
+                        await m_InterstitialAd.ShowAsync(showOptions);
+                        Debug.Log("Interstitial Shown!");
+                    }
+                    catch (ShowFailedException e)
+                    {
+                        Debug.Log($"Interstitial failed to show : {e.Message}");
+                    }
                 }
-                catch (ShowFailedException e)
-                {
-                    Debug.Log($"Interstitial failed to show : {e.Message}");
-                }
+                //monetisationData.ammountOfTimesSinceAds = 0;
             }
+            else if (monetisationData.hasPurchasedContent == true)
+            { 
+                Debug.Log("No ad shown, IAP has been bought."); 
+            }
+            else Debug.Log("No ad shown yet");
         }
 
         async void LoadAd()
@@ -95,37 +108,39 @@ namespace Unity.Services.Mediation.Samples
 
         void InitializationComplete()
         {
-            // Impression Event
-            MediationService.Instance.ImpressionEventPublisher.OnImpression += ImpressionEvent;
+            
+                // Impression Event
+                MediationService.Instance.ImpressionEventPublisher.OnImpression += ImpressionEvent;
 
-            switch (Application.platform)
-            {
-                case RuntimePlatform.Android:
-                    m_InterstitialAd = MediationService.Instance.CreateInterstitialAd(androidAdUnitId);
-                    break;
+                switch (Application.platform)
+                {
+                    case RuntimePlatform.Android:
+                        m_InterstitialAd = MediationService.Instance.CreateInterstitialAd(androidAdUnitId);
+                        Debug.Log("Loaded IntAd!!!");
+                        break;
 
-                case RuntimePlatform.IPhonePlayer:
-                    m_InterstitialAd = MediationService.Instance.CreateInterstitialAd(iosAdUnitId);
-                    break;
-                case RuntimePlatform.WindowsEditor:
-                case RuntimePlatform.OSXEditor:
-                case RuntimePlatform.LinuxEditor:
-                    m_InterstitialAd = MediationService.Instance.CreateInterstitialAd(!string.IsNullOrEmpty(androidAdUnitId) ? androidAdUnitId : iosAdUnitId);
-                    break;
-                default:
-                    Debug.LogWarning("Mediation service is not available for this platform:" + Application.platform);
-                    return;
-            }
+                    case RuntimePlatform.IPhonePlayer:
+                        m_InterstitialAd = MediationService.Instance.CreateInterstitialAd(iosAdUnitId);
+                        break;
+                    case RuntimePlatform.WindowsEditor:
+                    case RuntimePlatform.OSXEditor:
+                    case RuntimePlatform.LinuxEditor:
+                        m_InterstitialAd = MediationService.Instance.CreateInterstitialAd(!string.IsNullOrEmpty(androidAdUnitId) ? androidAdUnitId : iosAdUnitId);
+                        break;
+                    default:
+                        Debug.LogWarning("Mediation service is not available for this platform:" + Application.platform);
+                        return;
+                }
 
-            // Load Events
-            m_InterstitialAd.OnLoaded += AdLoaded;
-            m_InterstitialAd.OnFailedLoad += AdFailedLoad;
+                // Load Events
+                m_InterstitialAd.OnLoaded += AdLoaded;
+                m_InterstitialAd.OnFailedLoad += AdFailedLoad;
 
-            // Show Events
-            m_InterstitialAd.OnClosed += AdClosed;
+                // Show Events
+                m_InterstitialAd.OnClosed += AdClosed;                
 
-            Debug.Log("Initialized On Start! Loading Ad...");
-            LoadAd();
+                Debug.Log("Initialized On Start! Loading Ad...");
+                LoadAd();            
         }
 
         void InitializationFailed(Exception error)

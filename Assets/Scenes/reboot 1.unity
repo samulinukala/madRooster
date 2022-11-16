@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 16728600}
   - component: {fileID: 16728599}
   - component: {fileID: 16728603}
+  - component: {fileID: 16728604}
   m_Layer: 5
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -243,6 +244,23 @@ MonoBehaviour:
   androidGameId: 5022769
   bannerAdAnchor: 6
   bannerSize: 0
+--- !u!114 &16728604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16728598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbb15577ce934fe19ca50c62a0fbd1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidAdUnitId: Interstitial_Android
+  iosAdUnitId: Interstitial_iOS
+  iosGameId: 5022768
+  androidGameId: 5022769
+  monetisationData: {fileID: 11400000, guid: 6c9227e97f5c9d14b9d2fab2e76c6838, type: 2}
 --- !u!1 &89779247
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +795,8 @@ MonoBehaviour:
   GameOverAudioSource: {fileID: 1122274100}
   RestartAudioSource: {fileID: 784003201}
   doOnce: 0
+  monetisationData: {fileID: 11400000, guid: 6c9227e97f5c9d14b9d2fab2e76c6838, type: 2}
+  interstitialExample: {fileID: 16728604}
 --- !u!4 &461413053
 Transform:
   m_ObjectHideFlags: 0
