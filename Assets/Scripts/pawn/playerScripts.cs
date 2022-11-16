@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,7 +23,9 @@ public class playerScripts : MonoBehaviour
     public bool powerUpActive = false;
     public float powerUpTimer = 0;
     public float powerUpTimerTarget = 10;
-
+    public Sprite playerSprite;
+    public Sprite playerSpritePowerUp;
+    public SpriteRenderer playerImage;
     public AudioSource MovementAudio;
 
     // Start is called before the first frame update
@@ -39,6 +42,8 @@ public class playerScripts : MonoBehaviour
     {
         if (powerUpActive == true)
         {
+            playerImage.sprite = playerSpritePowerUp;
+          
             if (powerUpTimer > powerUpTimerTarget)
             {
                 powerUpTimer = 0;
@@ -48,6 +53,10 @@ public class playerScripts : MonoBehaviour
             {
                 powerUpTimer += 1 * Time.deltaTime;
             }
+        }
+        else
+        {
+            playerImage.sprite = playerSprite;
         }
 
         MovePlayer();
