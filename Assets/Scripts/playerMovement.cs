@@ -19,6 +19,9 @@ public class playerMovement : MonoBehaviour
     public Collider2D circleCollider;
     public invincibilityEffect invincibilityEffect=>FindObjectOfType<invincibilityEffect>();
     public bool IsAlive => health <= 0;
+    public bool powerUpActive = false;
+    public float powerUpTimer = 0;
+    public float powerUpTimerTarget = 10;
 
     public AudioSource MovementAudio;
 
@@ -34,7 +37,19 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        if (powerUpActive == true)
+        {
+            if (powerUpTimer > powerUpTimerTarget)
+            {
+                powerUpTimer = 0;
+                powerUpActive = false;
+            }
+            else
+            {
+                powerUpTimer += 1 * Time.deltaTime;
+            }
+        }
+
         MovePlayer();
         rotatePlayer();
      
