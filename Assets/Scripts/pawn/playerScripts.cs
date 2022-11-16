@@ -27,7 +27,10 @@ public class playerScripts : MonoBehaviour
     public Sprite playerSpritePowerUp;
     public SpriteRenderer playerImage;
     public AudioSource MovementAudio;
-
+    public AudioSource PowerUpSFX;
+    public AudioSource BackgroundMusic;
+    public bool DoOnce = false;
+    public float MovementVolume;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +45,21 @@ public class playerScripts : MonoBehaviour
     {
         if (powerUpActive == true)
         {
+            if(DoOnce == false)
+            {
+                BackgroundMusic.Pause();
+                PowerUpSFX.Play();
+                DoOnce = true;
+            }
             playerImage.sprite = playerSpritePowerUp;
           
             if (powerUpTimer > powerUpTimerTarget)
             {
                 powerUpTimer = 0;
                 powerUpActive = false;
+                DoOnce = false;
+                PowerUpSFX.Stop();
+                BackgroundMusic.UnPause();
             }
             else
             {
@@ -113,9 +125,9 @@ public class playerScripts : MonoBehaviour
       direction = input.actions["move"].ReadValue<Vector2>();
 
         Vector2 movement = new Vector2( direction.x*moveSpeed*Time.deltaTime ,  direction.y *moveSpeed * Time.deltaTime);
-        
-        MovementAudio.volume = movement.magnitude*50;
-        if(MovementAudio.volume < 0.3) MovementAudio.volume = 0.3f;
+        MovementVolume = movement.magnitude * 20;
+        MovementAudio.volume = MovementVolume;
+        if(MovementVolume < 0.2) MovementVolume = 0.2f;
         
         Rigidbody2D.AddForce(movement,ForceMode2D.Force);       
         
