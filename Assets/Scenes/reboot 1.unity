@@ -2656,7 +2656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2744129502607672611, guid: e92e7ef13f9924040bbca86e6ffed0d8, type: 3}
       propertyPath: health
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2744129502607672611, guid: e92e7ef13f9924040bbca86e6ffed0d8, type: 3}
       propertyPath: PowerUpSFX
